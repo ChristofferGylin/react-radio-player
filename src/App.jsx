@@ -6,10 +6,10 @@ function App() {
 
   const [searchResult, setSearchResult] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
-  const [url, setUrl] = useState('https://api.sr.se/api/v2/channels/?format=json&size=10&page=1')
+  const [url, setUrl] = useState(`https://api.sr.se/api/v2/channels/?format=json&pagination=false`)
   const [audioSrc, setAudioSrc] = useState('');
 
-  const getSearchResults = async (url, callback) => {
+  const getSearchResults = async (url) => {
 
     const response = await fetch(url);
 
@@ -19,11 +19,13 @@ function App() {
       setSearchResult(data.channels);
 
     }
-  }
+  };
+
 
   useEffect(() => {
 
     getSearchResults(url);
+
 
   }, []);
 
@@ -31,7 +33,7 @@ function App() {
   return (
     <div className="App">
       <Header audioSrc={audioSrc} setSearchTerm={setSearchTerm} />
-      <SearchResult setAudioSrc={setAudioSrc} data={searchResult} />
+      <SearchResult setAudioSrc={setAudioSrc} data={searchResult} searchTerm={searchTerm} />
     </div>
   )
 }

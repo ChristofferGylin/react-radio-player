@@ -19,6 +19,7 @@ const Header = (props) => {
                 <input placeholder='Search...' type="text" className='rounded-full border border-slate-300 my-2 col-span-3 py-1 px-2'
                     onChange={(e) => {
                         setSearch(e.target.value);
+
                     }} />
                 <button type='submit' className='border border-slate-300  hover:bg-slate-700 hover:border-slate-100 hover:text-slate-100 rounded-full text-slate-300 my-2 ml-2 py-1 px-2' >Search</button>
             </form>

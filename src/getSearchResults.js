@@ -1,5 +1,7 @@
 const getSearchResults = async (url, callback) => {
 
+    console.log('getSearchResults')
+
     const response = await fetch(url);
 
     if (response.ok) {
