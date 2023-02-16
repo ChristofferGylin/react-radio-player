@@ -1,4 +1,5 @@
 import { AiFillPlayCircle } from 'react-icons/ai';
+import filterSearchResults from './filterSearchResults';
 
 const SearchResult = (props) => {
 
@@ -15,45 +16,7 @@ const SearchResult = (props) => {
 
     }
 
-    let filterData = [];
-
-    const filterSearchResults = () => {
-
-        if (searchTerm === '' || searchTerm === undefined || searchTerm === null || searchTerm.length === 0) {
-
-            filterData = data;
-
-            return;
-        }
-
-        let lowerSearchTerm = searchTerm.toLowerCase();
-
-        filterData = data.filter((channel) => {
-
-            if (channel.name.toLowerCase().includes(lowerSearchTerm)) {
-
-                return true;
-
-            }
-
-            if (channel.tagline.toLowerCase().includes(lowerSearchTerm)) {
-
-                return true;
-
-            }
-
-            if (channel.channeltype.toLowerCase().includes(lowerSearchTerm)) {
-
-                return true;
-
-            }
-
-            return false;
-
-        })
-    }
-
-    filterSearchResults();
+    let filterData = filterSearchResults(data, searchTerm);
 
     return (
 
