@@ -28,17 +28,17 @@ const SearchResult = (props) => {
                     return (
 
                         <li key={`searchResult${index}`}
-                            className="grid grid-cols-6 gap-4 w-full py-8 border-b last:border-b-0 border-slate-400 text-slate-700">
-                            <div className="border-r col-span-1 ">
+                            className="grid grid-cols-5 gap-4 w-full py-8 border-b last:border-b-0 border-slate-400 text-slate-700">
+                            <div className={`col-span-1 px-4`} style={{ borderRight: `1px solid #${result.color}` }}>
                                 <img src={result.image} alt="Channel Logo" className="border-2 border-slate-400 hover:border-slate-500 hover:shadow hover:cursor-pointer rounded"
                                     onClick={() => {
                                         setAudioSrc(result.liveaudio.url)
                                     }} />
                             </div>
-                            <div className="col-span-5 flex flex-col justify-between gap-2">
+                            <div className="col-span-4 flex flex-col justify-between gap-2">
                                 <h2 className="text-xl font-semibold">{result.name}</h2>
                                 <p>{result.tagline}</p>
-                                <AiFillPlayCircle className="text-4xl hover:text-slate-800 hover:cursor-pointer"
+                                <AiFillPlayCircle className="text-5xl hover:text-slate-800 hover:cursor-pointer"
                                     onClick={() => {
                                         setAudioSrc(result.liveaudio.url)
                                     }} />
