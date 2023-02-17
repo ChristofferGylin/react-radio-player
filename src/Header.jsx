@@ -6,7 +6,7 @@ const Header = (props) => {
     const [search, setSearch] = useState('');
 
     let audioSrc = '';
-    let imgSrc = '';
+    let imgSrc = './img/nopic.png';
 
     if (currentStation) {
 
@@ -23,7 +23,7 @@ const Header = (props) => {
     }
 
     return (
-        <header className='flex justify-center gap-4 items-center p-4 w-full fixed top-0 left-0 bg-slate-800 shadow-lg'>
+        <header className='z-50 flex justify-center gap-4 items-center p-4 w-full fixed top-0 left-0 bg-slate-800 shadow-lg'>
             <div className="">
                 <img src={imgSrc} alt="Channel Logo" className="hidden sm:block border-2 border-slate-300 rounded-lg grow-0 w-28" />
             </div>

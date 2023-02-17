@@ -1,5 +1,7 @@
 import { AiFillPlayCircle } from 'react-icons/ai';
 import filterSearchResults from './filterSearchResults';
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 
 const SearchResult = (props) => {
 
@@ -9,7 +11,8 @@ const SearchResult = (props) => {
 
 
         return (
-            <div className="pt-52 sm:pt-40 pb-4 bg-red-200 w-5/6 sm:w-3/4 mx-auto h-screen">
+            <div className="mt-60 sm:mt-44 mb-4 bg-slate-200 w-5/6 sm:w-4/5 lg:w-3/4 mx-auto rounded-lg h-screen">
+                <Skeleton count={13} baseColor='rgb(203 213 225)' highlightColor='rgb(100 116 139)' height={70} />
 
             </div>
         )
