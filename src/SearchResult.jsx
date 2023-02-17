@@ -28,12 +28,26 @@ const SearchResult = (props) => {
 
                 {filterData.map((result, index) => {
 
+                    console.log(result.image);
+
+                    let imgSrc;
+
+                    if (result.image) {
+
+                        imgSrc = result.image;
+
+                    } else {
+
+                        imgSrc = './img/nopic.png';
+
+                    }
+
                     return (
 
                         <li key={`searchResult${index}`}
                             className="grid grid-cols-5 gap-2 sm:gap-3 lg:gap-4 w-full py-4 sm:py-8 lg:py-8 xl:py-10 border-b last:border-b-0 border-slate-400 text-slate-700">
                             <div className={`col-span-1 pr-2 sm:pr-3 lg:pr-4`} style={{ borderRight: `1px solid #${result.color}` }}>
-                                <img src={result.image} alt="Channel Logo" className="border-2 border-slate-400 hover:border-slate-500 hover:shadow hover:cursor-pointer rounded"
+                                <img src={imgSrc} alt="Channel Logo" className="border-2 border-slate-400 hover:border-slate-500 hover:shadow hover:cursor-pointer rounded"
                                     onClick={() => {
                                         setAudioSrc(result.liveaudio.url);
                                         setCurrentStation(result);
