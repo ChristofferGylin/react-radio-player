@@ -1,3 +1,4 @@
+import { ACTION } from './reducer';
 import { AiFillPlayCircle } from 'react-icons/ai';
 import filterSearchResults from './filterSearchResults';
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
@@ -5,9 +6,9 @@ import 'react-loading-skeleton/dist/skeleton.css'
 
 const SearchResult = (props) => {
 
-    const { data, setAudioSrc, searchTerm, setCurrentStation } = props
+    const { state, dispatch } = props
 
-    if (data.length === 0) {
+    if (state.searchResult.length === 0) {
 
 
         return (
@@ -19,7 +20,7 @@ const SearchResult = (props) => {
 
     }
 
-    let filterData = filterSearchResults(data, searchTerm);
+    let filterData = filterSearchResults(state.searchResult, state.searchTerm);
 
     return (
 
@@ -27,8 +28,6 @@ const SearchResult = (props) => {
             <ul className="m-8">
 
                 {filterData.map((result, index) => {
-
-                    console.log(result.image);
 
                     let imgSrc;
 
@@ -49,8 +48,7 @@ const SearchResult = (props) => {
                             <div className={`col-span-1 pr-2 sm:pr-3 lg:pr-4`} style={{ borderRight: `1px solid #${result.color}` }}>
                                 <img src={imgSrc} alt="Channel Logo" className="border-2 border-slate-400 hover:border-slate-500 hover:shadow hover:cursor-pointer rounded"
                                     onClick={() => {
-                                        setAudioSrc(result.liveaudio.url);
-                                        setCurrentStation(result);
+                                        dispatch({ type: ACTION.CURRENT_STATION, payload: result });
                                     }} />
                             </div>
                             <div className="col-span-4 flex flex-col justify-between gap-2">
@@ -58,8 +56,7 @@ const SearchResult = (props) => {
                                 <p>{result.tagline}</p>
                                 <AiFillPlayCircle className="text-5xl hover:text-slate-800 hover:cursor-pointer"
                                     onClick={() => {
-                                        setAudioSrc(result.liveaudio.url);
-                                        setCurrentStation(result);;
+                                        dispatch({ type: ACTION.CURRENT_STATION, payload: result });
                                     }} />
                             </div>
                         </li>

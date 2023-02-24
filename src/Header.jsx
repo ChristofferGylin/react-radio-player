@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
+import { ACTION } from "./reducer";
+import { useState } from "react";
 
 const Header = (props) => {
 
-    const { setSearchTerm, currentStation } = props;
+    const { dispatch, currentStation } = props;
     const [search, setSearch] = useState('');
 
     let audioSrc = '';
@@ -17,7 +18,7 @@ const Header = (props) => {
 
     const onSubmit = (e) => {
 
-        setSearchTerm(search);
+        dispatch({ type: ACTION.SEARCH_TERM, payload: search });
         e.preventDefault();
 
     }

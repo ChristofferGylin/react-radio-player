@@ -1,14 +1,18 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useReducer } from 'react'
 import Header from './Header'
 import SearchResult from './SearchResult';
+import { reducer, ACTION } from './reducer';
+
+const url = `https://api.sr.se/api/v2/channels/?format=json&pagination=false`;
 
 function App() {
 
-  const [searchResult, setSearchResult] = useState([]);
-  const [searchTerm, setSearchTerm] = useState('');
-  const [url, setUrl] = useState(`https://api.sr.se/api/v2/channels/?format=json&pagination=false`)
-  const [audioSrc, setAudioSrc] = useState('');
-  const [currentStation, setCurrentStation] = useState(null);
+  const [state, dispatch] = useReducer(reducer,
+    {
+      searchResult: [],
+      searchTerm: '',
+      currentStation: null
+    })
 
   const getSearchResults = async (url) => {
 
@@ -17,7 +21,7 @@ function App() {
     if (response.ok) {
 
       const data = await response.json();
-      setSearchResult(data.channels);
+      dispatch({ type: ACTION.SEARCH_RESULT, payload: data.channels });
 
     }
   };
@@ -33,8 +37,8 @@ function App() {
 
   return (
     <div className="App">
-      <Header audioSrc={audioSrc} currentStation={currentStation} setSearchTerm={setSearchTerm} />
-      <SearchResult setAudioSrc={setAudioSrc} data={searchResult} searchTerm={searchTerm} setCurrentStation={setCurrentStation} />
+      <Header currentStation={state.currentStation} dispatch={dispatch} />
+      <SearchResult dispatch={dispatch} state={state} />
     </div>
   )
 }
